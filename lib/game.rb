@@ -72,7 +72,7 @@ class Game
       # binding.pry
     end
     puts "Would you like to play again? (y/n)"
-    input = gets.chomp
+    input = gets.strip
     if input == "y"
       Game.start
     end
