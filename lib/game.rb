@@ -56,7 +56,7 @@ class Game
       puts "Cat's Game!"
     end
       puts "Would you like to play again? (y/n)"
-    input = gets.chomp
+    input = gets
     if input == "y"
       Game.start
     end
