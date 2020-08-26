@@ -1,6 +1,5 @@
 class Game
   attr_accessor :board, :player_1, :player_2
-
   WIN_COMBINATIONS = [
     [0,1,2],
     [3,4,5],
@@ -18,24 +17,12 @@ class Game
     @player_2 = player_2
   end
 
-  def current_player
-    @board.turn_count % 2 == 0 ? player_1 : player_2
-  end
-
-  def won?
-    WIN_COMBINATIONS.detect do |combination|
-      @board.cells[combination[0]] == @board.cells[combination[1]] &&
-      @board.cells[combination[1]] == @board.cells[combination[2]] &&
-      @board.taken?(combination[0] + 1)
-    end
-  end
-
-  def draw?
-    !won? && @board.full?
-  end
-
   def over?
-    draw? || won?
+    won? || draw?
+  end
+
+  def current_player
+    @board.turn_count % 2 == 0 ? @player_1 : @player_2
   end
 
   def winner
@@ -50,12 +37,12 @@ class Game
     if !@board.valid_move?(current_move)
       turn
     else
-      puts "Turn: #{@board.turn_count + 1}"
+      puts "Turn: #{@board.turn_count+1}\n"
       @board.display
       @board.update(current_move, player)
       puts "#{player.token} moved #{current_move}"
       @board.display
-      puts "\n"
+      puts "\n\n"
     end
   end
 
@@ -65,19 +52,23 @@ class Game
     end
     if won?
       puts "Congratulations #{winner}!"
-      @board.display
     elsif draw?
       puts "Cat's Game!"
-      @board.display
-      # binding.pry
-    end
-    puts "Would you like to play again? (y/n)"
-    input = gets.chomp
-    if input == "y"
-      Game.start
     end
   end
 
+  def won?
+    WIN_COMBINATIONS.detect do |combo|
+      @board.cells[combo[0]] == @board.cells[combo[1]] &&
+      @board.cells[combo[1]] == @board.cells[combo[2]] &&
+      @board.taken?(combo[0]+1)
+    end
+  end
+
+  def draw?
+    @board.full? && !won?
+  end
+end
 
   def self.start
     puts "Would you like to play 0, 1, or 2 player mode?"
