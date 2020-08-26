@@ -103,7 +103,7 @@ def self.start
       end
       Game.new(player_1, player_2).play
     end
-
+end
 
 
   def draw?
