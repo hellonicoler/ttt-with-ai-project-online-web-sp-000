@@ -5,7 +5,7 @@ require_relative '../config/environment'
 Game.start
 
 play_again = ""
-
+until play_again.downcase == "n" || play_again.downcase == "no"
   puts "Would you like to play again?"
   play_again = gets.strip
   
