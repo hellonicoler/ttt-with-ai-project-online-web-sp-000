@@ -10,5 +10,5 @@ until play_again.downcase == "n" || play_again.downcase == "no"
   play_again = gets.strip
   play_again.downcase == "y" || play_again.downcase == "yes"
 Game.start
-  end
+  
 end
