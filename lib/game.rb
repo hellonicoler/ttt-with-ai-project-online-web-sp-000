@@ -55,7 +55,7 @@ class Game
     elsif draw?
       puts "Cat's Game!"
     end
-        puts "Would you like to play again? (y/n)"
+      puts "Would you like to play again? (y/n)"
     input = gets.chomp
     if input == "y"
       Game.start
