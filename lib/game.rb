@@ -72,7 +72,7 @@ class Game
       # binding.pry
     end
     puts "Would you like to play again? (y/n)"
-    input = gets.strip
+    input = gets.chomp
     if input == "y"
       Game.start
     end
@@ -80,7 +80,7 @@ class Game
 
 
   def self.start
-    puts "Would you like to play 0, 1, or 2-player mode?"
+    puts "Would you like to play 0, 1, or 2 player mode?"
       input = gets.strip
       player_1 = nil
       player_2 = nil
@@ -92,9 +92,9 @@ class Game
 
 
     elsif input == "1"
-      puts "Do you want to go first and be X or second and be O? (x/o)"
+      puts "Great! Would you like to go 'first' and be X or 'second' and be O?"
       input_player = gets.strip
-      if input_player == "x"
+      if input_player == "first"
         player_1 = Players::Human.new("X")
         player_2 = Players::Computer.new("O")
       else
@@ -104,15 +104,15 @@ class Game
       Game.new(player_1, player_2).play
 
     elsif input == "2"
-      puts "Starting 2-player mode!"
-      puts "Does player one want to be an X or O? (x/o)"
+      puts "Okay, two player mode it is!"
+      puts "Great! Would you like to go 'first' and be X or 'second' and be O?"
       input_player = gets.strip
-      if input_player == "x"
+      if input_player == "first"
         player_1 = Players::Human.new("X")
         player_2 = Players::Human.new("O")
       else
-        player_1 = Players::Human.new("O")
-        player_2 = Players::Human.new("X")
+        player_1 = Players::Human.new("X")
+        player_2 = Players::Human.new("O")
       end
       Game.new(player_1, player_2).play
     end
